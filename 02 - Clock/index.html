@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>Clock</title>
+    </head>
+
+    <body>
+        <div class="digital-hour">SOMNETHING</div>
+
+        <div class="clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand minute-hand"></div>
+                <div class="hand second-hand"></div>
+            </div>
+            <div class="center"></div>
+
+        </div>
+    </body>
+    <script>
+        const hourHand = document.querySelector('.hour-hand');
+        const minHand = document.querySelector('.minute-hand');
+        const secondHand = document.querySelector('.second-hand');
+
+        const digitalHour = document.querySelector('.digital-hour');
+
+        function setDate() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            secondDeg = (seconds / 60) * 360 + 90;
+            secondHand.style.transform = `rotate(${secondDeg}deg)`;
+
+            minuteDeg = (minutes / 60) * 360 + 90 + seconds / 10
+            minHand.style.transform = `rotate(${minuteDeg}deg)`;
+
+            hourDeg = (hours / 60) * 360 + 90 + minutes / 10
+            hourHand.style.transform = `rotate(${hourDeg}deg)`
+
+            digitalHour.textContent = now.toLocaleTimeString()
+        }
+
+        setInterval(setDate, 1000)
+
+        setDate();
+    </script>
+
+</html>
